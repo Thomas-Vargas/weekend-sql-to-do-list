@@ -3,6 +3,7 @@ $(document).ready(onReady);
 function onReady() {
     console.log(`jq loaded`);
     getToDoList();
+    $('#submit-to-do').on('click', addNewToDo);
 }
 
 function getToDoList() {
@@ -17,7 +18,29 @@ function getToDoList() {
     });
 }
 
+function addNewToDo() {
+    $.ajax({
+        type: 'POST',
+        url: '/to-do',
+        data: {
+            task: $('#to-do-input').val(),
+            isComplete: false
+        }
+       })
+       .then((response) => {
+        console.log('response from server', response);
+        getToDoList();
+       })
+       .catch((error) => {
+        console.log('error in post', error);
+       })
+
+       $('#to-do-input').val('');
+}
+
 function renderToDos(toDoList) {
+    $('#view-to-dos').empty();
+
     for(let task of toDoList) {
         $('#view-to-dos').append(`
         <tr>
