@@ -4,6 +4,23 @@ const pg = require('pg');
 const pool = require('../modules/pool');
 
 //PUT
+router.put('/markAsComplete/:id', (req, res) => {
+    let idToUpdate = req.params.id;
+    
+    let queryText = `
+        UPDATE "todolist" SET "isComplete" = true WHERE id=$1;
+    `;
+
+    pool.query(queryText, [idToUpdate])
+        .then((result) => {
+            console.log('Successfully updated id:', idToUpdate);
+            res.sendStatus(200);
+        }) 
+        .catch((error) => {
+            console.log('Error updating to-do');
+            res.sendStatus(500);
+        })
+})
 
 // DELETE
 router.delete('/deleteToDo/:id', (req, res) => {
@@ -20,7 +37,7 @@ router.delete('/deleteToDo/:id', (req, res) => {
             res.sendStatus(200);
         })
         .catch((error) => {
-            console.log('error deleting id:', idToDelete);
+            console.log('error deleting to-do:', error);
             res.sendStatus(500);
         });
 })
@@ -28,7 +45,7 @@ router.delete('/deleteToDo/:id', (req, res) => {
 // GET
 router.get('/', (req, res) => {
     console.log('in GET request for /to-do')
-    const queryText = 'SELECT * FROM "todolist";';
+    const queryText = 'SELECT * FROM "todolist" ORDER BY "isComplete", "task";';
 
     pool.query(queryText)
         .then((result) => {

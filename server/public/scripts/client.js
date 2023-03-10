@@ -5,6 +5,28 @@ function onReady() {
     getToDoList();
     $('#submit-to-do').on('click', addNewToDo);
     $('#view-to-dos').on('click', '.deleteBtn', deleteToDo);
+    $('#view-to-dos').on('click', '.markCompleteBtn', markAsComplete);
+    $('input').on('keypress', function(e) {
+        let key = e.which;
+        if (key === 13) {
+            addNewToDo();
+        }
+    })
+}
+
+function markAsComplete() {
+    let idToUpdate = $(this).parent().parent().data().id;
+    console.log(idToUpdate);
+
+    $.ajax({
+        type: 'PUT',
+        url: `/to-do/markAsComplete/${idToUpdate}`
+    }).then((response) => {
+        console.log('Successfully updated:', idToUpdate);
+        getToDoList();
+    }).catch((error) => {
+        console.log('error updating to-do', error);
+    })
 }
 
 function deleteToDo() {
@@ -35,36 +57,60 @@ function getToDoList() {
 }
 
 function addNewToDo() {
-    $.ajax({
-        type: 'POST',
-        url: '/to-do',
-        data: {
-            task: $('#to-do-input').val(),
-            isComplete: false
-        }
-       })
-       .then((response) => {
-        console.log('response from server', response);
-        getToDoList();
-       })
-       .catch((error) => {
-        console.log('error in post', error);
-       })
+    let newTask = $('#to-do-input').val()
 
-       $('#to-do-input').val('');
+    if (newTask) {
+        $.ajax({
+            type: 'POST',
+            url: '/to-do',
+            data: {
+                task: $('#to-do-input').val(),
+                isComplete: false
+            }
+           })
+           .then((response) => {
+                console.log('response from server', response);
+                getToDoList();
+           })
+           .catch((error) => {
+                console.log('error in post', error);
+           })
+    
+           $('#to-do-input').val('');
+    }
+    else {
+        alert('Please fill out input!')
+    }
 }
 
 function renderToDos(toDoList) {
     $('#view-to-dos').empty();
 
+    let color = '';
+    let status = 'Incomplete';
     for(let task of toDoList) {
-        $('#view-to-dos').append(`
-            <tr data-id='${task.id}'>
+        if (task.isComplete) {
+            color = 'green';
+            status = 'Complete'
+
+            $('#view-to-dos').append(`
+            <tr data-id='${task.id}' class="${color}">
                 <th>${task.task}</th>
-                <th>${task.isComplete}</th>
+                <th>${status}</th>
+                <th>Task completed</th>
+                <th><button class='deleteBtn'>Delete</button></th>
+            </tr>
+        `); 
+        }
+        else {
+            $('#view-to-dos').append(`
+            <tr data-id='${task.id}' class="${color}">
+                <th>${task.task}</th>
+                <th>${status}</th>
                 <th><button class='markCompleteBtn'>Mark Complete</button></th>
                 <th><button class='deleteBtn'>Delete</button></th>
             </tr>
         `); 
+        }
     }
 }

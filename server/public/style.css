@@ -1,0 +1,128 @@
+:root {
+    --tan: #ffcf99;
+    --white: #FFF8F0;
+    --black: #1E1E24;
+    --red: #92140C;
+    --dark-blue: #111D4A;
+    --green: rgb(74, 148, 74);
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: var(--tan);
+    font-family: 'Barlow', sans-serif;
+}
+
+header {
+    padding: 20px 0px 10px 40px;
+    background-color: var(--black);
+    color: var(--white);
+    margin-bottom: 40px;
+    font-size: 28px;
+    box-shadow: 0px 2px 8px #888888;
+}
+
+#wrapper {
+    background-color: var(--white);
+    margin: 0px 40px 0px 40px;
+    border-radius: 8px;
+    border: 2px solid var(--dark-blue)
+}
+
+#input-container {  
+    margin: 20px 0px 20px 20px;
+}
+
+input {
+    background-color: var(--tan);
+    color: var(--black);
+    height: 50px;
+    width: 200px;
+    border: 2px solid var(--black);
+    border-radius: 8px;
+    font-size: 18px;
+    text-indent: 10px;
+}
+
+input:focus {
+    outline: none;
+}
+
+input::placeholder {
+    color: var(--black);
+}
+
+#submit-to-do {
+    margin-left: 20px;
+    width: 80px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: #ffcf99;
+    border: 2px solid var(--black);
+    color: var(--black);
+    font-size: 16px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+}
+
+.green {
+    background-color: var(--green);
+}
+
+#to-do-container {
+    margin: 0px 20px 20px 20px;
+}
+
+table {
+    width: 100%;
+    border: 4px solid var(--black);
+    border-radius: 8px;
+    background-color: var(--tan);
+    border-spacing: 0;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 15px;
+}
+
+thead {
+    background-color: var(--black);
+    border-radius: 8px;
+    color: var(--white);
+}
+
+thead th {
+    padding: 16px;
+    font-size: 28px;
+    color: var(--white);
+}
+
+th {
+    padding: 6px;
+    border: 1px solid var(--black);
+    font-size: 20px;
+    color: var(--black);
+}
+
+.deleteBtn {
+    background-color: var(--red);
+    width: 80px;
+    height: 30px;
+    border-radius: 8px;
+    border: 2px solid var(--black);
+    color: var(--white);
+    font-size: 16px;
+}
+
+.markCompleteBtn {
+    height: 30px;
+    border-radius: 8px;
+    border: 2px solid var(--black);
+    color: var(--black);
+    font-size: 16px;
+    padding: 0px 15px 0px 15px;
+}
