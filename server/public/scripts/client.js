@@ -4,6 +4,22 @@ function onReady() {
     console.log(`jq loaded`);
     getToDoList();
     $('#submit-to-do').on('click', addNewToDo);
+    $('#view-to-dos').on('click', '.deleteBtn', deleteToDo);
+}
+
+function deleteToDo() {
+    let idToDelete = $(this).parent().parent().data().id;
+    console.log(idToDelete);
+
+    $.ajax({
+        type: "DELETE",
+        url: `/to-do/deleteToDo/${idToDelete}`
+      }).then((result) => {
+        console.log('successfully deleted', idToDelete);
+        getToDoList();
+      }).catch((error) => {
+        console.log('error deleting to-do', error);
+      })
 }
 
 function getToDoList() {
@@ -43,12 +59,12 @@ function renderToDos(toDoList) {
 
     for(let task of toDoList) {
         $('#view-to-dos').append(`
-        <tr>
-            <th>${task.task}</th>
-            <th>${task.isComplete}</th>
-            <th><button>Mark Complete</button></th>
-            <th><button>Delete</button></th>
-        </tr>
+            <tr data-id='${task.id}'>
+                <th>${task.task}</th>
+                <th>${task.isComplete}</th>
+                <th><button class='markCompleteBtn'>Mark Complete</button></th>
+                <th><button class='deleteBtn'>Delete</button></th>
+            </tr>
         `); 
     }
 }
