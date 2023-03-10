@@ -93,11 +93,12 @@ function renderToDos(toDoList) {
             color = 'green';
             status = 'Complete'
 
+
             $('#view-to-dos').append(`
             <tr data-id='${task.id}' class="${color}">
                 <th>${task.task}</th>
                 <th>${status}</th>
-                <th>Task completed</th>
+                <th>Task completed on ${task.timeCompleted}</th>
                 <th><button class='deleteBtn'>Delete</button></th>
             </tr>
         `); 

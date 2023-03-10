@@ -2,13 +2,15 @@ const express = require('express');
 const router = express.Router();
 const pg = require('pg');
 const pool = require('../modules/pool');
+const moment = require('moment');
 
 //PUT
 router.put('/markAsComplete/:id', (req, res) => {
     let idToUpdate = req.params.id;
-    
+    let date = moment().format('LLL');
+    console.log(date);
     let queryText = `
-        UPDATE "todolist" SET "isComplete" = true WHERE id=$1;
+        UPDATE "todolist" SET "isComplete" = true, "timeCompleted" = '${date}' WHERE id=$1;
     `;
 
     pool.query(queryText, [idToUpdate])
