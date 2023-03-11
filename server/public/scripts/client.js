@@ -4,7 +4,23 @@ function onReady() {
     console.log(`jq loaded`);
     getToDoList();
     $('#submit-to-do').on('click', addNewToDo);
-    $('#view-to-dos').on('click', '.deleteBtn', deleteToDo);
+
+    $('#view-to-dos').on('click', '.deleteBtn', function() {
+        $('.modal').modal('toggle');
+        const idToDelete = $(this).parent().parent().data().id;
+        console.log(idToDelete);
+      
+        $('#modal-btn-delete').data('idToDelete', idToDelete);
+    });
+      
+    $(document).on('click', '#modal-btn-delete', function() {
+        const idToDelete = $(this).data('idToDelete');
+        console.log(idToDelete);
+        deleteToDo(idToDelete);
+        $('.modal').modal('hide');
+    });
+      
+
     $('#view-to-dos').on('click', '.markCompleteBtn', markAsComplete);
     $('input').on('keypress', function(e) {
         let key = e.which;
@@ -29,10 +45,7 @@ function markAsComplete() {
     })
 }
 
-function deleteToDo() {
-    let idToDelete = $(this).parent().parent().data().id;
-    console.log(idToDelete);
-
+function deleteToDo(idToDelete) {
     $.ajax({
         type: "DELETE",
         url: `/to-do/deleteToDo/${idToDelete}`
