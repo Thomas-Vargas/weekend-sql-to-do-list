@@ -108,7 +108,7 @@ function renderToDos(toDoList) {
             <tr data-id='${task.id}' class="${color}">
                 <th>${task.task}</th>
                 <th>${status}</th>
-                <th><button class='markCompleteBtn btn btn-success'>Mark Complete</button></th>
+                <th><button class='markCompleteBtn btn btn-success'>Complete</button></th>
                 <th><button class='btn btn-danger deleteBtn'>Delete</button></th>
             </tr>
         `); 
