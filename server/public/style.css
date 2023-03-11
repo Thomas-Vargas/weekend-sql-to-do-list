@@ -37,25 +37,26 @@ header {
     margin: 20px 0px 20px 20px;
 }
 
-input {
-    background-color: var(--tan);
+.inputStyle {
     color: var(--black);
     height: 50px;
-    width: 200px;
+    width: 300px;
     border: 2px solid var(--black);
     border-radius: 8px;
     font-size: 18px;
     text-indent: 10px;
+    margin-bottom: 10px;
 }
 
-input:focus {
-    outline: none;
+.form-control:focus {
+    border: 2px solid var(--black);
 }
 
 input::placeholder {
     color: var(--black);
 }
 
+/*
 #submit-to-do {
     margin-left: 20px;
     width: 80px;
@@ -66,6 +67,7 @@ input::placeholder {
     color: var(--black);
     font-size: 16px;
 }
+*/
 
 button:hover {
     cursor: pointer;
@@ -107,7 +109,7 @@ th {
     font-size: 20px;
     color: var(--black);
 }
-
+/*
 .deleteBtn {
     background-color: var(--red);
     width: 80px;
@@ -125,4 +127,28 @@ th {
     color: var(--black);
     font-size: 16px;
     padding: 0px 15px 0px 15px;
+}
+*/
+
+@media (max-width: 575.98px) {
+    th {
+        font-size: 14px;
+    }
+
+    .inputStyle {
+        width: 200px;
+    }
+
+    thead th {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    #wrapper {
+        margin: 10px;
+    }
+
+    #to-do-container {
+        margin: 0px 5px 20px 5px;
+    }
 }

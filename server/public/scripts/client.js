@@ -99,7 +99,7 @@ function renderToDos(toDoList) {
                 <th>${task.task}</th>
                 <th>${status}</th>
                 <th>Task completed on ${task.timeCompleted}</th>
-                <th><button class='deleteBtn'>Delete</button></th>
+                <th><button class='deleteBtn btn btn-danger'>Delete</button></th>
             </tr>
         `); 
         }
@@ -108,8 +108,8 @@ function renderToDos(toDoList) {
             <tr data-id='${task.id}' class="${color}">
                 <th>${task.task}</th>
                 <th>${status}</th>
-                <th><button class='markCompleteBtn'>Mark Complete</button></th>
-                <th><button class='deleteBtn'>Delete</button></th>
+                <th><button class='markCompleteBtn btn btn-success'>Complete</button></th>
+                <th><button class='btn btn-danger deleteBtn'>Delete</button></th>
             </tr>
         `); 
         }
