@@ -6,9 +6,10 @@ const moment = require('moment');
 
 //PUT
 router.put('/markAsComplete/:id', (req, res) => {
-    let idToUpdate = req.params.id;
+    // Store formated date
     let date = moment().format('LLL');
-    console.log(date);
+    //console.log(date);
+    let idToUpdate = req.params.id;
     let queryText = `
         UPDATE "todolist" SET "isComplete" = true, "timeCompleted" = '${date}' WHERE id=$1;
     `;
@@ -21,7 +22,7 @@ router.put('/markAsComplete/:id', (req, res) => {
         .catch((error) => {
             console.log('Error updating to-do');
             res.sendStatus(500);
-        })
+        });
 })
 
 // DELETE
