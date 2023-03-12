@@ -1,3 +1,5 @@
+-- Run to create table
+
 CREATE TABLE todolist (
 	"id" serial PRIMARY KEY,
 	"task" varchar(500),
