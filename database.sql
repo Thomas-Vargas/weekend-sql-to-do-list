@@ -3,7 +3,8 @@
 CREATE TABLE todolist (
 	"id" serial PRIMARY KEY,
 	"task" varchar(500),
-	"isComplete" boolean
+	"isComplete" boolean,
+	"timeCompleted" varChar(100)
 );
 
 -- Test data
