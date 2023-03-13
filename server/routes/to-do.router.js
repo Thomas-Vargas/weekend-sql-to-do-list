@@ -47,6 +47,7 @@ router.delete('/deleteToDo/:id', (req, res) => {
 
 // GET
 router.get('/', (req, res) => {
+    console.log('query text');
     console.log('in GET request for /to-do')
     const queryText = 'SELECT * FROM "todolist" ORDER BY "isComplete", "id" DESC;';
 
