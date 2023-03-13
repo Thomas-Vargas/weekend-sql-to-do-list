@@ -20,7 +20,7 @@ router.put('/markAsComplete/:id', (req, res) => {
             res.sendStatus(200);
         }) 
         .catch((error) => {
-            console.log('Error updating to-do');
+            console.log('Error updating to-do', error);
             res.sendStatus(500);
         });
 })
